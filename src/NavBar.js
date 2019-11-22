@@ -18,9 +18,6 @@ const NavBar = () => {
         </span>
       }
       {
-        <span>
-          <Link to="/">Home</Link>&nbsp;
-        </span>
       }
     </div>
   );
