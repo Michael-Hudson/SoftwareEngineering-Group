@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/AuApp.iml" filepath="$PROJECT_DIR$/.idea/AuApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/AuTalking.iml" filepath="$PROJECT_DIR$/.idea/AuTalking.iml" />
     </modules>
   </component>
 </project>

@@ -1,0 +1,13 @@
+.NavBar {
+    background-color: #19b1c5;
+    min-height: 2vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: calc(10px + 2vmin);
+    color: purple;
+    margin-top: 0px;
+  }
+  
+  
