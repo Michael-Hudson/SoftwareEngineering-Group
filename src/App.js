@@ -3,7 +3,8 @@ import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import NavBar from './NavBar';
 import Footer from './Footer';
-import Home from './home';
+import Home from './Home';
+import ChatRoom from './Room';
 
 class App extends React.Component {
   render(){
@@ -15,6 +16,7 @@ class App extends React.Component {
         </header>
         <Switch>
           <Route path="/" exact component={Home} />
+          <Route path="/Room" exact component={ChatRoom} />
         </Switch>
         <footer>
           <Footer />
