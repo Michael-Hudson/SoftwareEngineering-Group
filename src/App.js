@@ -3,7 +3,7 @@ import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import NavBar from './NavBar';
 import Footer from './Footer';
-import Home from './Home';
+import Home from './home';
 import ChatRoom from './Room';
 
 class App extends React.Component {
