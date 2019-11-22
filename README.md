@@ -1,2 +1,2 @@
 # SoftwareEngineering-Group
-Anderson University  ChatApp
+Anderson University  ChatApplication
