@@ -1,16 +1,20 @@
 .Footer {
     background-color:orange;
-    min-height: 10vh;
+    min-height: 5vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: calc(10px + 2vmin);
+    font-size: calc(9px + 1vmin);
     color: purple;
+    width: 100%;
+    position: fixed;
+    overflow: hidden;
+    bottom: 0;
+    left: 0;
   }
   
   .cpsc-logo {
     height: 5vmin;
     pointer-events: none;
   }
-  
