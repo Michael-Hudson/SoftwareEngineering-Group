@@ -75,7 +75,7 @@ sendMessage(event){
     return(
   <div>
     <ol>
-      {currentMessage},{this.state.user}
+      {currentMessage}{this.state.user}
       </ol>
       <input  onChange={this.changeMessage} type="text" placeholder="Message"/>
       <button onClick ={this.sendMessage}>POST</button>
