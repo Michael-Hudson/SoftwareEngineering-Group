@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Where am I?</title>
+    <script>
+      window.onload = getMyLocation;
+
+      function getMyLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(displayLocation);
+        } else {
+          alert('error location not supported');
+        }
+      }
+
+      function displayLocation(position) {
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+        var div = document.getElementById('location');
+        div.innerHTML =
+          'You are at Latitude: ' + latitude + ', Longitude: ' + longitude;
+
+        
+        //LONGITUDE MAX=70.3301640308  MIN=43.4673334847
+
+ 
+
+        function Subtract(buildingX, buildingY) {
+          buildingX = latitude - buildingX;
+          buildingX = Math.abs(buildingX);
+          buildingY = longitude - buildingY;
+          buildingY = Math.abs(buildingY);
+          building = buildingX - buildingY;
+          building = Math.abs(building);
+          return building;
+        }
+
+        Olt = Subtract(oltX, oltY);
+        Decker = Subtract(deckerX, deckerY);
+        Nicholson = Subtract(nicholsonX, nicholsonY);
+        Hartung = Subtract(hartungX, hartungY);
+        Reardon = Subtract(reardonX, reardonY); // DECKER
+
+        if (
+          Decker < Olt &&
+          Decker < Nicholson &&
+          Decker < Hartung &&
+          Decker < Reardon
+        ) {
+          //alert('Decker X');
+          document.getElementById('building').innerHTML = 'Decker';
+        }
+
+        // HARTUNG
+        if (
+          Hartung < Olt &&
+          Hartung < Nicholson &&
+          Hartung < Decker &&
+          Hartung < Reardon
+        ) {
+          //alert('Decker X');
+          document.getElementById('building').innerHTML = 'Hartung';
+        }
+
+        // Reardon
+        if (
+          Reardon < Olt &&
+          Reardon < Nicholson &&
+          Reardon < Hartung &&
+          Reardon < Decker
+        ) {
+          //alert('Decker X');
+          document.getElementById('building').innerHTML = 'Reardon';
+        }
+
+        // Student Center
+        if (Olt < Decker && Olt < Nicholson && Olt < Hartung && Olt < Reardon) {
+          //alert('Decker X');
+          document.getElementById('building').innerHTML = 'Olt';
+        }
+
+        // Nicholson
+        if (
+          Nicholson < Decker &&
+          Nicholson < Nicholson &&
+          Nicholson < Hartung &&
+          Nicholson < Reardon
+        ) {
+          //alert('Decker X');
+          document.getElementById('building').innerHTML = 'Nicholson';
+        }
+
+       	BuildOptions();
+       	
+       	}
+      
+
+function BuildOptions(){
+
+
+if (document.getElementById("building").innerHTML == "Decker") {
+		RoomOptions("Make a selection");		
+		RoomOptions(115);
+		RoomOptions(355);
+		RoomOptions(350);
+		RoomOptions(250);
+		RoomOptions(351);
+		RoomOptions("Create");
+		RoomOptions("BOD");
+	
+		}
+		
+
+if (document.getElementById("building").innerHTML == "Hartung"){
+
+		RoomOptions("Make a selection");
+		RoomOptions(215);
+		RoomOptions(355);
+		
+		
+}
+if (document.getElementById("building").innerHTML == "Reardon"){
+		
+		RoomOptions("Make a selection");
+		RoomOptions("Main Auditorium");
+		RoomOptions("lobby");
+
+}
+
+if (document.getElementById("building").innerHTML == "Library"){
+		
+		RoomOptions("Make a selection");
+		RoomOptions("Study Rooms");
+		RoomOptions("General");
+
+}
+
+if (document.getElementById("building").innerHTML == "Student Center"){
+		
+		RoomOptions("Make a selection");
+		RoomOptions("Market Place");
+		RoomOptions("Haven");
+		RoomOptions("CAB");
+		RoomOptions("Mocha's");
+		RoomOptions("Kane Dinning Hall");
+
+}
+
+
+}
+
+
+function RoomOptions(number){	//this function will create options for the dropdown menu for room selection when the building is initialized or re-chossen
+ 
+		//alert("Im in RoomOptions");
+		var selection1 = document.createElement("option");
+		var text1 = document.createTextNode(number);
+		selection1.appendChild(text1);
+		document.getElementById("mySelect").appendChild(selection1);
+
+
+}
+
+
+function Roomdisplay(){		//displays for user what room selection they have chosen in element "Room"
+var selection = document.getElementById("mySelect").value;
+
+if(0 < selection.value < 1000){
+document.getElementById("Room").innerHTML = "You are in Room " + selection;
+//alert(selection);
+}
+else
+document.getElementById("Room").innerHTML = "You are in " + selection;
+
+
+}
+
+
+
+function visible(){	//makes the select Building dropdown menu visible
+
+document.getElementById("Buildingselect").removeAttribute("hidden");
+
+}
+ 
+ 
+ 
+function EditPlace(){		//function that handles changing the building
+
+document.getElementById("building").innerHTML = document.getElementById("Buildingselect").value;
+document.getElementById("Buildingselect").setAttribute("hidden","");
+
+const myNode = document.getElementById("mySelect");
+		
+while (myNode.firstChild) {
+	myNode.removeChild(myNode.firstChild);	//removing all children (options) of the previously selected building 
+}
+
+BuildOptions();		//send to a function to build options
+
+	document.getElementById("Room").innerHTML = "";		//makes the room tag empty
+
+
+} 
+ 
+ 
+      
+      
+      
+  
+    </script>
+    <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+  </head>
+
+  <body id="body">
+    <h1 id="heading">CPSC 2330 Final Project: Geolocation Api</h1>
+    <h2 id="heading">where are you?</h2>
+    <br />
+    <div id="map" hidden=""></div> 
+    <br>
+
+    <div id="location"></div>
+    <div id="distance"></div>
+    <br />
+    <br />
+
+    <div id="building" onchange="BuildOptions()"></div>
+    <br>
+    <div id="Room"></div>
+    <br>
+
+
+    <select onchange="Roomdisplay()" id ="mySelect" size = "number">
+  	</select>
+
+	<button onclick="visible()">"Not in this building?"</button>
+
+	<select id ="Buildingselect" hidden="" onchange="EditPlace()">
+		<option value = "Make a selection"> Make a selection </option>
+	    <option value = "Reardon" id="Option0"> Reardon</option>
+	    <option value = "Decker" id="Option1"> Decker</option>
+	    <option value = "Hartung" id="Option2"> Hartung</option>
+	    <option value = "Student Center" id="Option3"> Student Center</option>
+	    <option value = "Library" id="Option4"> Library</option>   
+  	</select>
+
+
+	<button onclick="">"Go to the chat page for this room!"</button>
+
+    <br />
+    <br />
+    <div id="map"></div>
+    
+    
+    
+  </body>
+</html>
