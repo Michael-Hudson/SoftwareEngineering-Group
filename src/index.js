@@ -6,6 +6,8 @@ import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 
 // import Auth0 libraries and configuration
+import { Auth0Provider } from './react-auth0-wrapper';
+import config from './auth_config.json';
 
 // import the main component here
 import App from './App';
@@ -14,13 +16,13 @@ import App from './App';
 // Should not need to be modified, and yes there is a ternerary operator there
 // I think this is default to react
 const onRedirectCallback = appState => {
-  window.history.replaceState(
-    {},
-    document.title,
-    appState && appState.targetUrl
-      ? appState.targetUrl
-      : window.location.pathname
-  );
+    window.history.replaceState(
+        {},
+        document.title,
+        appState && appState.targetUrl
+            ? appState.targetUrl
+            : window.location.pathname
+    );
 };
 
 // Fill the div that is found in index.html here
@@ -28,8 +30,16 @@ const onRedirectCallback = appState => {
 // Unless you add a div to the index.html file, you should not need to
 // make any changes here.
 ReactDOM.render(
-    <App />,
-  document.getElementById('root')
+    <Auth0Provider
+        domain={config.domain}
+        client_id={config.clientId}
+        redirect_uri={window.location.origin}
+        onRedirectCallback={onRedirectCallback}
+        audience={config.audience}
+    >
+        <App />
+    </Auth0Provider>,
+    document.getElementById('root')
 );
 
 // Standard React: for now, we should not need to change this

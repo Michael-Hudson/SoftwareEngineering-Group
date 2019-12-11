@@ -6,6 +6,7 @@
     "@material-ui/core": "^4.6.1",
     "firebase": "^7.4.0",
     "react": "^16.12.0",
+    "react-bootstrap": "^1.0.0-beta.16",
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0"
@@ -30,5 +31,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@auth0/auth0-spa-js": "^1.6.0",
+    "axios": "^0.19.0",
+    "jsonwebtoken": "^8.5.1",
+    "jwks-rsa-promisified": "^1.0.2"
   }
 }

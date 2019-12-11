@@ -3,6 +3,7 @@ import './App.css';
 import logo from './au.png';
 import fire from './fire';
 import firebase from 'firebase';
+import Link from "@material-ui/core/Link";
 class ChatRoom extends React.Component {
   constructor(props,context){
     super(props,context)
@@ -74,6 +75,7 @@ sendMessage(event){
     })
     return(
   <div>
+      <Link to="/profile">Profile</Link>&nbsp;
     <ol>
       {currentMessage}{this.state.user}
       </ol>
